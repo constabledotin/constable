@@ -187,7 +187,7 @@ function Page() {
                       <option value="Quadratic Equations">
                         Quadratic Equations
                       </option>
-                      <option value="Newton's Laws">Newton's Laws</option>
+                   
                     </>
                   )}
                 </select>

@@ -191,7 +191,6 @@ const AdminHeader = () => {
                         <span className="font-semibold text-gray-900 dark:text-white">
                           Bonnie Green
                         </span>
-                        : "Hey, what's up? All set for the presentation?"
                       </div>
                       <div className="text-xs font-medium text-primary-700 dark:text-primary-400">
                         a few moments ago
