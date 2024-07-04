@@ -12,9 +12,9 @@ export async function middleware(req) {
   
     // Check if the user has the "admin" role
     console.log(token)
-    if (token.role !== 'admin') {
-      return NextResponse.redirect(new URL('/403', req.url)); // Redirect to a "Forbidden" page
-    }
+    // if (token.role !== 'admin') {
+    //   return NextResponse.redirect(new URL('/403', req.url)); // Redirect to a "Forbidden" page
+    // }
   
     return NextResponse.next();
   }
