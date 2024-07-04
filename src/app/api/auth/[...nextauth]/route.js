@@ -3,6 +3,7 @@ import connectToDB from "@/database";
 import User from "@/database/models/userSchema";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+export const maxDuration = 30;
 
  const authOptions = {
   providers: [
