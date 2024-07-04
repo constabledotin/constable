@@ -1,4 +1,4 @@
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth";
 import connectToDB from "@/database";
 import User from "@/database/models/userSchema";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -39,6 +39,6 @@ import bcrypt from "bcrypt";
   },
 };
 
-const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+export const GET = NextAuth(authOptions);
+export const POST = NextAuth(authOptions);

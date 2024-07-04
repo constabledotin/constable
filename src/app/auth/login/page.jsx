@@ -29,7 +29,7 @@ const Login = () => {
                 return;
             }
 
-            router.replace("dashboard");
+            router.replace("/admin/dashboard/upload-question");
         } catch (error) {
             console.log(error);
         }
