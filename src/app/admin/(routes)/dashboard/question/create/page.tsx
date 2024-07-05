@@ -1,5 +1,5 @@
-"use client"
-import { initFlowbite } from 'flowbite';
+"use client";
+import { initFlowbite } from "flowbite";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
@@ -10,22 +10,22 @@ const CustomEditor = dynamic(
   { ssr: false }
 );
 
-function Page() {
-  useEffect(() => {
-    initFlowbite()
-   }, [])
-
+function CreateQuestion() {
   const [options, setOptions] = useState(["", "", "", ""]);
   const [question, setQuestion] = useState("");
   const [solution, setSolution] = useState("");
   const [formData, setFormData] = useState({
-    subject: "",
-    topic: "",
-    subtopic: "",
+    subjectName: "",
+    topicName: "",
+    subtopicName: "",
     difficulty: 0,
     videoLink: "",
     answer: "",
   });
+
+  const [subject, setSubject] = useState([]);
+  const [topic, setTopic] = useState([]);
+  const [subtopic, setSubtopic] = useState([]);
 
   const addOption = () => {
     setOptions([...options, ""]);
@@ -46,9 +46,6 @@ function Page() {
     }));
   };
 
-  const handleChange = (data, state) => {
-    state(data);
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
@@ -78,6 +75,85 @@ function Page() {
       // Handle the error by displaying an error message to the user
     }
   };
+
+  const getSubject = async () => {
+    try {
+      const response = await fetch("/api/admin/subject/all", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      setSubject(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getTopic = async (subjectName) => {
+    const payload ={
+      subjectName : subjectName
+    }
+    try {
+      const response = await fetch("/api/admin/subject/topic/all", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body : JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      setTopic(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getSubtopic = async (subjectName,topicName) => {
+    const payload = {
+      subjectName:subjectName,
+      topicName : topicName
+    }
+    try {
+      const response = await fetch("/api/admin/subject/subtopic/all", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body : JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      setSubtopic(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    initFlowbite();
+    getSubject();
+  }, []);
+
+  useEffect(() => {
+    getTopic(formData.subjectName);
+  }, [formData.subjectName]);
+
+  useEffect(() => {
+    getSubtopic(formData.subjectName,formData.topicName);
+  }, [formData.topicName]);
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -150,50 +226,85 @@ function Page() {
           </div>
 
           <div className="">
-            {["subject", "topic", "subtopic"].map((field) => (
-              <div key={field} className="mb-4">
-                <label
-                  htmlFor={field}
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  {field.charAt(0).toUpperCase() + field.slice(1)}
-                </label>
-                <select
-                  name={field}
-                  id={field}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  value={formData[field]}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">Select {field}</option>
-                  {field === "subject" && (
-                    <>
-                      <option value="Math">Math</option>
-                      <option value="Science">Science</option>
-                      <option value="History">History</option>
-                    </>
-                  )}
-                  {field === "topic" && (
-                    <>
-                      <option value="Algebra">Algebra</option>
-                      <option value="Geometry">Geometry</option>
-                      <option value="Physics">Physics</option>
-                    </>
-                  )}
-                  {field === "subtopic" && (
-                    <>
-                      <option value="Linear Equations">Linear Equations</option>
-                      <option value="Quadratic Equations">
-                        Quadratic Equations
-                      </option>
-                   
-                    </>
-                  )}
-                </select>
-              </div>
-            ))}
+            <div className="mb-4">
+              <label
+                htmlFor="subjectName"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Subject Name
+              </label>
+              <select
+                name="subjectName"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                value={formData.subjectName}
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                required
+              >
+                <option value="">Select subject</option>
+             
+                {subject.map((subject) => {
+                  return (
+                    <option value={subject.subjectName}>
+                      {subject.subjectName}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
 
+            <div className="mb-4">
+              <label
+                htmlFor="topicName"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Topic Name
+              </label>
+              <select
+                name="topicName"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                value={formData.topicName}
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                required
+              >
+                <option value="">Select Topic</option>
+                {topic.map((topic) => {
+                  return (
+                    <option value={topic.topicName}>{topic.topicName}</option>
+                  );
+                })}
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="subtopicName"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Subtopic Name
+              </label>
+              <select
+                name="subtopicName"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                value={formData.subtopicName}
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                required
+              >
+                <option value="">Select Subtopic</option>
+                {subtopic.map((subtopic) => {
+                  return (
+                    <option value={subtopic.subtopicName}>
+                      {subtopic.subtopicName}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
             <div className="mb-4">
               <label
                 htmlFor="difficulty"
@@ -260,4 +371,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default CreateQuestion;
