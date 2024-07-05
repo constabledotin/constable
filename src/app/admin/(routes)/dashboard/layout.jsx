@@ -2,6 +2,7 @@
 import AdminHeader from '@/components/admin/AdminHeader'
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function DashboardLayout({ children }) {
   return (
@@ -55,7 +56,7 @@ export default function DashboardLayout({ children }) {
                 alt="Flowbite Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Flowbite
+                Constable
               </span>
             </a>
             <form action="#" method="GET" className="hidden md:block md:pl-2">
@@ -406,7 +407,7 @@ export default function DashboardLayout({ children }) {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <div className="text-sm text-gray-900 dark:text-white">Sales</div>
+                  <div className="text-sm text-gray-900 dark:text-white">Subject</div>
                 </a>
                 <a
                   href="#"
@@ -792,7 +793,7 @@ export default function DashboardLayout({ children }) {
                   />
                 </svg>
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                  Pages
+                  Question
                 </span>
                 <svg
                   aria-hidden="true"
@@ -810,28 +811,23 @@ export default function DashboardLayout({ children }) {
               </button>
               <ul id="dropdown-pages" className="hidden py-2 space-y-2">
                 <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                  >
-                    Upload Question
-                  </a>
-                </li>
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/admin/dashboard/question/subtopic/create"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Kanban
-                  </a>
+                    Add Question
+                  </Link>
                 </li>
+                </li>
+           
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/admin/dashboard/question/all"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Calendar
-                  </a>
+                    All Question
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -856,7 +852,7 @@ export default function DashboardLayout({ children }) {
                   />
                 </svg>
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                  Sales
+                  Subject
                 </span>
                 <svg
                   aria-hidden="true"
@@ -874,29 +870,32 @@ export default function DashboardLayout({ children }) {
               </button>
               <ul id="dropdown-sales" className="hidden py-2 space-y-2">
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/admin/dashboard/subject/create"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Products
-                  </a>
+                    Add Subject
+                  </Link>
                 </li>
+
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/admin/dashboard/subject/topic/create"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Billing
-                  </a>
+                    Add Topic
+                  </Link>
                 </li>
+
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href="/admin/dashboard/subject/subtopic/create"
                     className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Invoice
-                  </a>
+                    Add Subtopic
+                  </Link>
                 </li>
+
               </ul>
             </li>
             <li>

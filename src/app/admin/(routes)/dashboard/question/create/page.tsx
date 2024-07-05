@@ -246,7 +246,7 @@ function CreateQuestion() {
              
                 {subject.map((subject) => {
                   return (
-                    <option value={subject.subjectName}>
+                    <option key={subject._id} value={subject.subjectName}>
                       {subject.subjectName}
                     </option>
                   );
@@ -273,7 +273,7 @@ function CreateQuestion() {
                 <option value="">Select Topic</option>
                 {topic.map((topic) => {
                   return (
-                    <option value={topic.topicName}>{topic.topicName}</option>
+                    <option key={topic._id} value={topic.topicName}>{topic.topicName}</option>
                   );
                 })}
               </select>
@@ -298,7 +298,7 @@ function CreateQuestion() {
                 <option value="">Select Subtopic</option>
                 {subtopic.map((subtopic) => {
                   return (
-                    <option value={subtopic.subtopicName}>
+                    <option key={subtopic._id} value={subtopic.subtopicName}>
                       {subtopic.subtopicName}
                     </option>
                   );

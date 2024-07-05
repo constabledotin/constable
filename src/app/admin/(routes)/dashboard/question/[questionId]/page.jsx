@@ -1,5 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
+import { initFlowbite } from 'flowbite';
+
 
 function Question({ params }) {
     const [question, setQuestion] = useState({ question: "", options: [] });
@@ -29,6 +31,7 @@ function Question({ params }) {
     };
 
     useEffect(() => {
+        initFlowbite();
         getQuestion();
     }, []);
 
@@ -81,7 +84,7 @@ function Question({ params }) {
             </div>
 
             <div className="p-12 flex items-center justify-center">
-                <iframe width="700" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+                <iframe width="700" height="345" src={question.videoLink}>
                 </iframe>
             </div>
 
