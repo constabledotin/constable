@@ -1,3 +1,4 @@
+import Image from "next/image"
 const AdminHeader = () => {
   return (
       <header className="antialiased">
@@ -50,9 +51,11 @@ const AdminHeader = () => {
                 <span className="sr-only">Toggle sidebar</span>
               </button>
               <a href="https://flowbite.com" className="flex mr-4">
-                <img
+                <Image
                   src="https://flowbite.s3.amazonaws.com/logo.svg"
                   className="mr-3 h-8"
+                  width={20}
+                  height={20}
                   alt="FlowBite Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -167,10 +170,12 @@ const AdminHeader = () => {
                     className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
                         className="w-11 h-11 rounded-full"
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
                         alt="Bonnie Green avatar"
+                        width={20}
+                        height={20}
                       />
                       <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 rounded-full border border-white bg-primary-700 dark:border-gray-700">
                         <svg
@@ -202,7 +207,7 @@ const AdminHeader = () => {
                     className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
                         className="w-11 h-11 rounded-full"
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
                         alt="Jese Leos avatar"
@@ -240,7 +245,7 @@ const AdminHeader = () => {
                     className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
                         className="w-11 h-11 rounded-full"
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png"
                         alt="Joseph McFall avatar"
@@ -279,7 +284,7 @@ const AdminHeader = () => {
                     className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
                         className="w-11 h-11 rounded-full"
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png"
                         alt="Roberta Casas image"
@@ -317,7 +322,7 @@ const AdminHeader = () => {
                     className="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
                         className="w-11 h-11 rounded-full"
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/robert-brown.png"
                         alt="Robert image"
@@ -578,7 +583,7 @@ const AdminHeader = () => {
                 data-dropdown-toggle="dropdown"
               >
                 <span className="sr-only">Open user menu</span>
-                <img
+                <Image
                   className="w-8 h-8 rounded-full"
                   src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                   alt="user photo"

@@ -1,6 +1,7 @@
 "use client"
 import AdminHeader from '@/components/admin/AdminHeader'
 import { signOut } from 'next-auth/react';
+import Image from 'next/image';
 
 export default function DashboardLayout({ children }) {
   return (
@@ -46,9 +47,11 @@ export default function DashboardLayout({ children }) {
               href="https://flowbite.com"
               className="flex items-center justify-between mr-4"
             >
-              <img
+              <Image
                 src="https://flowbite.s3.amazonaws.com/logo.svg"
                 className="mr-3 h-8"
+                width={20}
+                height={20}
                 alt="Flowbite Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -138,9 +141,11 @@ export default function DashboardLayout({ children }) {
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
-                    <img
+                    <Image
                       className="w-11 h-11 rounded-full"
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
+                      height={20}
+                      width={20}
                       alt="Bonnie Green avatar"
                     />
                     <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 rounded-full border border-white bg-primary-700 dark:border-gray-700">
@@ -174,9 +179,11 @@ export default function DashboardLayout({ children }) {
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
-                    <img
+                    <Image
                       className="w-11 h-11 rounded-full"
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                      height={20}
+                      width={20}
                       alt="Jese Leos avatar"
                     />
                     <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-gray-900 rounded-full border border-white dark:border-gray-700">
@@ -212,10 +219,12 @@ export default function DashboardLayout({ children }) {
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
-                    <img
+                    <Image
                       className="w-11 h-11 rounded-full"
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png"
                       alt="Joseph McFall avatar"
+                      height={20}
+                      width={20}
                     />
                     <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-red-600 rounded-full border border-white dark:border-gray-700">
                       <svg
@@ -254,10 +263,12 @@ export default function DashboardLayout({ children }) {
                   className="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                 >
                   <div className="flex-shrink-0">
-                    <img
+                    <Image
                       className="w-11 h-11 rounded-full"
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png"
                       alt="Roberta Casas image"
+                      height={20}
+                      width={20}
                     />
                     <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-green-400 rounded-full border border-white dark:border-gray-700">
                       <svg
@@ -296,10 +307,12 @@ export default function DashboardLayout({ children }) {
                   className="flex py-3 px-4 hover:bg-gray-100 dark:hover:bg-gray-600"
                 >
                   <div className="flex-shrink-0">
-                    <img
+                    <Image
                       className="w-11 h-11 rounded-full"
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/robert-brown.png"
                       alt="Robert image"
+                      height={20}
+                      width={20}
                     />
                     <div className="flex absolute justify-center items-center ml-6 -mt-5 w-5 h-5 bg-purple-500 rounded-full border border-white dark:border-gray-700">
                       <svg
@@ -569,9 +582,11 @@ export default function DashboardLayout({ children }) {
               data-dropdown-toggle="dropdown"
             >
               <span className="sr-only">Open user menu</span>
-              <img
+              <Image
                 className="w-8 h-8 rounded-full"
                 src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gough.png"
+                height={20}
+                width={20}
                 alt="user photo"
               />
             </button>

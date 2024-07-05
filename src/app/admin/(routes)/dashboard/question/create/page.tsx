@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 const CustomEditor = dynamic(
   () => {
-    return import("../../../../../components/customEditor");
+    return import("@/components/customEditor");
   },
   { ssr: false }
 );

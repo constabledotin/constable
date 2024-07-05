@@ -316,7 +316,7 @@ function CreateQuestion() {
                                     {
                                         questions.map((question) => {
                                             return (
-                                                <tr className="border-b dark:border-gray-700">
+                                                <tr key={question._id} className="border-b dark:border-gray-700">
                                                     <th
                                                         scope="row"
                                                         className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -353,8 +353,7 @@ function CreateQuestion() {
                                                                 aria-labelledby="apple-imac-27-dropdown-button"
                                                             >
                                                                 <li>
-
-                                                                    =                                                                    <Link className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" href={`/admin/dashboard/question/${question._id}`}>Show</Link>
+                                                                    <Link className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" href={`/admin/dashboard/question/${question._id}`}>Show</Link>
                                                                 </li>
                                                                 <li>
                                                                     <a

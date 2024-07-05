@@ -1,7 +1,7 @@
  "use client"
 
 import { useState } from 'react';
-
+import Image from 'next/image';
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -54,7 +54,7 @@ const Register = () => {
                         href="#"
                         className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
                     >
-                        <img
+                        <Image
                             className="w-8 h-8 mr-2"
                             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
                             alt="logo"

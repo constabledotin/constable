@@ -41,8 +41,8 @@ function Question({ params }) {
             </div>
 
 
-            <div className="flex flex-row">
-                <div className="basis-3/4 mx-2 bg-white p-8 rounded-md shadow-md" style={{ border: "1px solid black" }}>
+            <div className="flex flex-col md:flex-row">
+                <div className="basis-3/4  mx-2 bg-white p-8 rounded-md shadow-md" style={{ border: "1px solid black" }}>
                     <form id="quizForm" className="space-y-4">
                         <div className="flex flex-col mb-4">
                             {question.options.map((option, index) => (
@@ -67,15 +67,22 @@ function Question({ params }) {
 
                 </div>
 
-                <div className="bg-white basis-1/4 ml-2">
-                <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{question.subject}</span>
-                <span class="bg-purple-100 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">{question.topic}</span>
+                <div className="bg-dark basis-1/4 ml-2">
+                    <div className="my-4">
+                        <span class=" bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{question.subject}</span>
+                    </div>
+                    <div>
+                        <span class="bg-purple-100 rounded text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">{question.topic}</span>
+                    </div>
+                    <div className="my-10">
+                        <span class="bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400">{question.subtopic}</span>
+                    </div>
                 </div>
             </div>
 
-            <div className="p-4 flex">
-            <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
-            </iframe>
+            <div className="p-12 flex items-center justify-center">
+                <iframe width="700" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+                </iframe>
             </div>
 
         </section>
