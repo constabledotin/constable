@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^7.0.0",
+    "@react-pdf/renderer": "^3.4.4",
     "bcrypt": "^5.1.1",
     "ckeditor5-custom-build": "file:./src/components/ckEditor5",
     "clerk": "^0.8.3",
     "flowbite": "^2.3.0",
+    "html2pdf.js": "^0.10.2",
     "mongoose": "^8.4.1",
     "next": "14.2.3",
     "next-auth": "^4.24.7",

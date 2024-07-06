@@ -8,9 +8,13 @@ export async function POST(req) {
 
     const body = await req.json();
     const {subjectName} = body;
-    const query = {
-      subjectName : subjectName
+    let query;
+    if(subjectName){
+       query = {
+        subjectName : subjectName
+      }
     }
+
     const topics = await Topic.find(query);
     // Send a success response
     return NextResponse.json({
