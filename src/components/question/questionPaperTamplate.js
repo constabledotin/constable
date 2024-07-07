@@ -18,21 +18,20 @@ function questionTemp(heading, subheading, questions) {
 
     // Generate HTML for each question
     questionHTML += `
-        <div class="max-w-2xxl mx-auto bg-white p-6 rounded  mb-6">
-          <div class="mb-6">
-            <h3 class="text-lg font-bold mb-2">Question ${index + 1}</h3>
-            <p class="mb-4">${questionContent}</p>
+        <div class="max-w-full mx-auto bg-white p-2 rounded  mb-2">
+          <div class="mb-2">
+            <p class="mb-4">Question ${index + 1} <span>${questionContent}</span></p>
           </div>
   
-          <div class="mb-6">
-            <h3 class="text-lg font-bold mb-2">Options</h3>
+          <div class="mb-2">
+            <h3 class="text-sm font-bold mb-2">Options</h3>
             <ul>
               ${optionsList}
             </ul>
           </div>
   
-          <div class="mb-6">
-            <h3 class="text-lg font-bold mb-2">Correct Answer</h3>
+          <div class="mb-4">
+            <h3 class="text-sm font-bold mb-2">Correct Answer</h3>
             <p class="mb-4">
               The correct answer is: <span class="font-semibold">${answer}</span>
             </p>

@@ -1,11 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { useRef } from 'react';
-
-
-import html2pdf from "html2pdf.js"
 import questionTemp from "@/components/question/questionPaperTamplate";
-
 
 function QuestionGenerator() {
     const [formData, setFormData] = useState({
@@ -14,12 +9,8 @@ function QuestionGenerator() {
         questions: [],
     });
 
-
-    const slidesRef = useRef(null);
-
     const [topic, setTopic] = useState([]);
     const [subtopic, setSubtopic] = useState([]);
-
     const [divs, setDivs] = useState([{ id: 1 }]); // State to track dynamically added divs
 
     const handleDuplicateDiv = () => {
@@ -79,17 +70,17 @@ function QuestionGenerator() {
                 throw new Error("Network response was not ok");
             }
             const result = await response.json();
-            console.log("result is ",result)
+            console.log("result is ", result)
             // Generate PDF using html2pdf.js
             const options = {
-                margin:       1,
-                filename:     'myfile.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                margin: 0.5,
+                filename: `${formData.heading}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
             };
-            const data = questionTemp("Hello","Opps",result.data)
-      
+            const data = questionTemp(formData.heading, formData.subheading, result.data)
+            const html2pdf = (await import("html2pdf.js/dist/html2pdf.min.js")).default
             html2pdf().set(options).from(data).save();
         } catch (error) {
             console.error("Error:", error);
@@ -303,7 +294,7 @@ function QuestionGenerator() {
                 </form>
             </div>
 
-       
+
 
         </section>
     );
