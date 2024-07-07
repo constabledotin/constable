@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 
 function CreateQuestion() {
     const [questions, setQuestions] = useState([]);
+    const [showModel,setShowModel] = useState(false)
 
     const [currentPage, setCurrentPage] = useState(1); // Initialize current page
     const [totalPages, setTotalPages] = useState(10); // Placeholder for total pages (adjust as per API response)
@@ -86,6 +87,10 @@ function CreateQuestion() {
         }
     };
 
+    const handleEdit = async()=>{
+        setShowModel(true)
+    }
+
     useEffect(() => {
         initFlowbite();
         getQuestions();
@@ -97,7 +102,8 @@ function CreateQuestion() {
 
     return (
         <div>
-            <UpdateModel />
+           {showModel?<UpdateModel/>:<></>}
+           
             <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
@@ -384,7 +390,7 @@ function CreateQuestion() {
                                                         </button>
                                                         <div
                                                             id="apple-imac-27-dropdown"
-                                                            className={questionId === question._id ? ' z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:  bg-gray-700 dark:divide-gray-600' : 'hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'}                                                        >
+                                                            className={questionId === question._id ? ' z-10 w-44 bg-gray rounded divide-y divide-gray-100 shadow dark:  bg-gray-700 dark:divide-gray-600' : 'hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'}                                                        >
                                                             <ul
                                                                 className="py-1 text-sm text-gray-700 dark:text-gray-200"
                                                                 aria-labelledby="apple-imac-27-dropdown-button"
@@ -393,27 +399,26 @@ function CreateQuestion() {
                                                                     <Link className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" href={`/admin/dashboard/question/${question._id}`}>Show</Link>
                                                                 </li>
                                                                 <li>
-                                                                    <div className="flex justify-center m-5">
 
-                                                                    </div>
                                                                     <button
-                                                                        id="updateProductButton"
-                                                                        data-modal-target="updateProductModal"
-                                                                        data-modal-toggle="updateProductModal"
+                                                                        onClick={handleEdit}
                                                                         className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                                                     >
                                                                         Edit
                                                                     </button>
                                                                 </li>
-                                                            </ul>
-                                                            <div className="py-1">
+                                                                <li>
+                                                                <div className="py-1">
                                                                 <button
                                                                     onClick={() => { handleDelete(question._id) }}
-                                                                    className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                                                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                                                 >
                                                                     Delete
                                                                 </button>
                                                             </div>
+                                                                </li>
+                                                            </ul>
+                                                         
                                                         </div>
                                                     </td>
                                                 </tr>
