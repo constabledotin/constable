@@ -20,6 +20,8 @@ export async function POST(req) {
       options,
     } = body;
 
+    console.log("question id is : ",questionId)
+
     const updatedQuestion = await Question.findByIdAndUpdate(questionId, {
       question: question,
       solution: solution,

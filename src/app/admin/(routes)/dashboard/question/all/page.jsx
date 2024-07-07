@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 function CreateQuestion() {
     const [questions, setQuestions] = useState([]);
     const [showModel,setShowModel] = useState(false)
+    const [updateData,setUpdateData] = useState()
 
     const [currentPage, setCurrentPage] = useState(1); // Initialize current page
     const [totalPages, setTotalPages] = useState(10); // Placeholder for total pages (adjust as per API response)
@@ -87,7 +88,8 @@ function CreateQuestion() {
         }
     };
 
-    const handleEdit = async()=>{
+    const handleEdit = async(question)=>{
+        setUpdateData(question)
         setShowModel(true)
     }
 
@@ -102,7 +104,7 @@ function CreateQuestion() {
 
     return (
         <div>
-           {showModel?<UpdateModel/>:<></>}
+           {showModel?<UpdateModel setShowModel={setShowModel} setUpdateData={updateData} />:<></>}
            
             <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
@@ -401,7 +403,7 @@ function CreateQuestion() {
                                                                 <li>
 
                                                                     <button
-                                                                        onClick={handleEdit}
+                                                                        onClick={()=>{handleEdit(question)}}
                                                                         className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                                                     >
                                                                         Edit
