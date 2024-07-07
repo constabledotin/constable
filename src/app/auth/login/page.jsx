@@ -21,7 +21,6 @@ const Login = () => {
             const res = await signIn("credentials", {
                 email,
                 password,
-                
                 redirect: false,
             });
 
@@ -30,7 +29,7 @@ const Login = () => {
                 return;
             }
 
-            router.replace("/admin/dashboard/upload-question");
+            router.replace("/admin/dashboard/question/create");
         } catch (error) {
             console.log(error);
         }

@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { initFlowbite } from "flowbite";
+import Swal from 'sweetalert2'
 
 
 function CreateSubtopic() {
@@ -35,12 +36,25 @@ function CreateSubtopic() {
 
             const result = await response.json();
             console.log("Success:", result);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+            });
+
             // Optionally, you can reset the input field or perform other actions upon success
             setSubjectName('');
             setTopicName('');
             setError(null); // Clear any previous errors
         } catch (error) {
             console.error("Error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            });
             setError("Failed to create subject. Please try again."); // Set error state
         }
     };

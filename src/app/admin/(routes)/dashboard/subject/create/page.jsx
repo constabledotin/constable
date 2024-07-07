@@ -1,5 +1,7 @@
 "use client"
 import { useState } from "react";
+import Swal from 'sweetalert2'
+
 
 function CreateSubject() {
     const [subjectName, setSubjectName] = useState('');
@@ -27,11 +29,23 @@ function CreateSubject() {
 
             const result = await response.json();
             console.log("Success:", result);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
             // Optionally, you can reset the input field or perform other actions upon success
             setSubjectName('');
             setError(null); // Clear any previous errors
         } catch (error) {
             console.error("Error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+              });
             setError("Failed to create subject. Please try again."); // Set error state
         }
     };

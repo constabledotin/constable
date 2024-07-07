@@ -59,7 +59,7 @@ const AdminHeader = () => {
                   alt="FlowBite Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Flowbite
+                  Constable
                 </span>
               </a>
               <form action="#" method="GET" className="hidden lg:block lg:pl-2">

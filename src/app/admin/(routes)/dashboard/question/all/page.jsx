@@ -2,7 +2,9 @@
 import { initFlowbite } from 'flowbite';
 import { getToken } from 'next-auth/jwt';
 import Link from 'next/link';
+import UpdateModel from "@/components/question/UpdateModel"
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2'
 
 function CreateQuestion() {
     const [questions, setQuestions] = useState([]);
@@ -20,9 +22,6 @@ function CreateQuestion() {
         setCurrentPage(page);
         getQuestions(page)
     };
-
-
-
     const getQuestions = async (currentPage) => {
         const payload = {
             page: currentPage,
@@ -49,6 +48,43 @@ function CreateQuestion() {
 
     }
 
+    const handleDelete = async (questionId) => {
+        const payload = {
+            questionId
+        };
+        try {
+            const response = await fetch("/api/admin/question/delete-question", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const result = await response.json();
+            console.log("Success:", result);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Deleted successfully",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            getQuestions();
+        } catch (error) {
+            console.error("Error:", error);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            });
+            // Handle the error by displaying an error message to the user
+        }
+    };
 
     useEffect(() => {
         initFlowbite();
@@ -61,6 +97,7 @@ function CreateQuestion() {
 
     return (
         <div>
+            <UpdateModel />
             <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
@@ -356,21 +393,26 @@ function CreateQuestion() {
                                                                     <Link className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" href={`/admin/dashboard/question/${question._id}`}>Show</Link>
                                                                 </li>
                                                                 <li>
-                                                                    <a
-                                                                        href="#"
+                                                                    <div className="flex justify-center m-5">
+
+                                                                    </div>
+                                                                    <button
+                                                                        id="updateProductButton"
+                                                                        data-modal-target="updateProductModal"
+                                                                        data-modal-toggle="updateProductModal"
                                                                         className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                                                     >
                                                                         Edit
-                                                                    </a>
+                                                                    </button>
                                                                 </li>
                                                             </ul>
                                                             <div className="py-1">
-                                                                <a
-                                                                    href="#"
+                                                                <button
+                                                                    onClick={() => { handleDelete(question._id) }}
                                                                     className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                 >
                                                                     Delete
-                                                                </a>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </td>

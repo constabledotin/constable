@@ -7,7 +7,7 @@ export async function middleware(req) {
   
     // Redirect to login if no token is found
     if (!token) {
-      return NextResponse.redirect(new URL('/auth/signin', req.url));
+      return NextResponse.redirect(new URL('/auth/login', req.url));
     }
   
     // Check if the user has the "admin" role

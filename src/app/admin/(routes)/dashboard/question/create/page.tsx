@@ -2,6 +2,7 @@
 import { initFlowbite } from "flowbite";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Swal from "sweetalert2";
 
 const CustomEditor = dynamic(
   () => {
@@ -69,9 +70,21 @@ function CreateQuestion() {
 
       const result = await response.json();
       console.log("Success:", result);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       // You can also display a success message or redirect the user here
     } catch (error) {
       console.error("Error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+      });
       // Handle the error by displaying an error message to the user
     }
   };
@@ -96,16 +109,16 @@ function CreateQuestion() {
   };
 
   const getTopic = async (subjectName) => {
-    const payload ={
-      subjectName : subjectName
-    }
+    const payload = {
+      subjectName: subjectName,
+    };
     try {
       const response = await fetch("/api/admin/subject/topic/all", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body : JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -118,18 +131,18 @@ function CreateQuestion() {
     }
   };
 
-  const getSubtopic = async (subjectName,topicName) => {
+  const getSubtopic = async (subjectName, topicName) => {
     const payload = {
-      subjectName:subjectName,
-      topicName : topicName
-    }
+      subjectName: subjectName,
+      topicName: topicName,
+    };
     try {
       const response = await fetch("/api/admin/subject/subtopic/all", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body : JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -152,7 +165,7 @@ function CreateQuestion() {
   }, [formData.subjectName]);
 
   useEffect(() => {
-    getSubtopic(formData.subjectName,formData.topicName);
+    getSubtopic(formData.subjectName, formData.topicName);
   }, [formData.topicName]);
 
   return (
@@ -243,7 +256,7 @@ function CreateQuestion() {
                 required
               >
                 <option value="">Select subject</option>
-             
+
                 {subject.map((subject) => {
                   return (
                     <option key={subject._id} value={subject.subjectName}>
@@ -273,7 +286,9 @@ function CreateQuestion() {
                 <option value="">Select Topic</option>
                 {topic.map((topic) => {
                   return (
-                    <option key={topic._id} value={topic.topicName}>{topic.topicName}</option>
+                    <option key={topic._id} value={topic.topicName}>
+                      {topic.topicName}
+                    </option>
                   );
                 })}
               </select>

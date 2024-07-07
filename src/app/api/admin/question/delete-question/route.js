@@ -8,12 +8,12 @@ export async function POST(req) {
     // Parse the request body
     const body = await req.json();
     const {questionId}= body;
-    const question = Question.findByIdAndDelete(questionId)
+    const question = await Question.findByIdAndDelete(questionId)
 
     // Send a success response
     return NextResponse.json({
       success: true,
-      message: "Question fetched successfully",
+      message: "Question deleted successfully",
       data: question,
     });
   } catch (error) {

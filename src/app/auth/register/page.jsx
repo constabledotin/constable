@@ -1,7 +1,8 @@
- "use client"
+"use client"
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Swal from 'sweetalert2'
 const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -35,14 +36,25 @@ const Register = () => {
             console.log(result);
 
             if (response.ok) {
-                alert("Registration successful");
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 // Clear the form or redirect the user as needed
+
             } else {
                 alert(`Error: ${result.message}`);
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('An error occurred while registering. Please try again.');
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+            });
         }
     };
 
@@ -146,7 +158,7 @@ const Register = () => {
                                             aria-describedby="terms"
                                             type="checkbox"
                                             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                            
+
                                         />
                                     </div>
                                     <div className="ml-3 text-sm">
