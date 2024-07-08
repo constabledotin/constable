@@ -21,7 +21,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['user', 'admin'],
     default: 'user'
-  }
+  },
+  current_level: { type: Number, default: 1 },
+  correct_streak: { type: Number, default: 0 },
+  incorrect_streak: { type: Number, default: 0 },
 }, {
   timestamps: true
 });

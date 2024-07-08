@@ -3,8 +3,6 @@ import connectToDB from "@/database";
 import User from "@/database/models/userSchema";
 import bcrypt from 'bcrypt';
 
-export const maxDuration = 30;
-
 export async function POST(req) {
   try {
     await connectToDB();
