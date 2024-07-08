@@ -4,7 +4,7 @@ import Question from "@/database/models/questionSchema"
 import User from "@/database/models/userSchema"
 
 import { getServerSession } from "next-auth/next"
-import { authOptions} from "../../../auth/[...nextauth]/route"
+import { authOptions } from "@/app/api/auth/[...nextauth]/auth";
 
 
 export async function POST(req,res) {
