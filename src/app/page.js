@@ -8,222 +8,239 @@ export default function Home() {
   
   return (
   <>
-  <section className="bg-gray-50 dark:bg-gray-900 h-screen flex items-center">
-  <div className="max-w-screen-xl px-4 mx-auto lg:px-12 w-full">
-    <div className="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-      <div className="flex flex-col items-center justify-between p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
-        <div className="w-full md:w-1/2">
-          <form className="flex items-center">
-            <label
-              className="sr-only"
-              htmlFor="simple-search"
-            >
-              Search
-            </label>
-            <div className="relative w-full">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clipRule="evenodd"
-                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <input
-                className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                id="simple-search"
-                placeholder="Search"
-                required
-                type="text"
-              />
-            </div>
-          </form>
-        </div>
-        <div className="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
-          <button
-            className="flex items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-            type="button"
+<div className="bg-white lg:pb-12">
+  <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <header className="flex items-center justify-between py-4 md:py-8">
+      {/* logo - start */}
+      <a
+        href="/"
+        className="inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl"
+        aria-label="logo"
+      >
+        <svg
+          width={95}
+          height={94}
+          viewBox="0 0 95 94"
+          className="h-auto w-6 text-indigo-500"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M96 0V47L48 94H0V47L48 0H96Z" />
+        </svg>
+        Flowrift
+      </a>
+      {/* logo - end */}
+      {/* nav - start */}
+      <nav className="hidden gap-12 lg:flex">
+        <a
+          href="#"
+          className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
+        >
+          Home
+        </a>
+        <a
+          href="#"
+          className="inline-flex items-center gap-1 text-lg font-semibold text-indigo-500"
+        >
+          Features
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-gray-800"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
-            <svg
-              aria-hidden="true"
-              className="h-3.5 w-3.5 mr-2"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clipRule="evenodd"
-                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                fillRule="evenodd"
-              />
-            </svg>
-            Add product
-          </button>
-          <div className="flex items-center w-full space-x-3 md:w-auto">
-            <button
-              className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              data-dropdown-toggle="actionsDropdown"
-              id="actionsDropdownButton"
-              type="button"
-            >
+            <path
+              fillRule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </a>
+        <a
+          href="#"
+          className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
+        >
+          Pricing
+        </a>
+        <a
+          href="#"
+          className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700"
+        >
+          About
+        </a>
+      </nav>
+      {/* nav - end */}
+      {/* buttons - start */}
+      <div className="-ml-8 hidden flex-col gap-2.5 sm:flex-row sm:justify-center lg:flex lg:justify-start">
+        <a
+          href="#"
+          className="inline-block rounded-lg px-4 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:text-indigo-500 focus-visible:ring active:text-indigo-600 md:text-base"
+        >
+          Sign in
+        </a>
+        <a
+          href="#"
+          className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
+        >
+          Sign up
+        </a>
+      </div>
+      <button
+        type="button"
+        className="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clipRule="evenodd"
+          />
+        </svg>
+        Menu
+      </button>
+      {/* buttons - end */}
+    </header>
+    {/* menu - start */}
+    <div className="hidden w-full overflow-hidden rounded-lg border bg-gray-50 shadow-sm lg:block">
+      <div className="mx-auto flex max-w-screen-lg items-center gap-8 p-8">
+        <div className="grid w-2/3 grid-cols-2 gap-8">
+          {/* link - start */}
+          <a href="#" className="group flex gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg transition duration-100 group-hover:bg-indigo-600 group-active:bg-indigo-700 md:h-12 md:w-12">
               <svg
-                aria-hidden="true"
-                className="-ml-1 mr-1.5 w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
                 <path
-                  clipRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  fillRule="evenodd"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
                 />
               </svg>
-              Actions
-            </button>
-            <div
-              className="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-              id="actionsDropdown"
-            >
-              <ul
-                aria-labelledby="actionsDropdownButton"
-                className="py-1 text-sm text-gray-700 dark:text-gray-200"
-              >
-                <li>
-                  <a
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    href="#"
-                  >
-                    Mass Edit
-                  </a>
-                </li>
-              </ul>
-              <div className="py-1">
-                <a
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  href="#"
-                >
-                  Delete all
-                </a>
-              </div>
             </div>
-            <button
-              className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg md:w-auto focus:outline-none hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              data-dropdown-toggle="filterDropdown"
-              id="filterDropdownButton"
-              type="button"
-            >
-              <svg
-                aria-hidden="true"
-                className="w-4 h-4 mr-2 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clipRule="evenodd"
-                  d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                  fillRule="evenodd"
-                />
-              </svg>
-              Filter
-              <svg
-                aria-hidden="true"
-                className="-mr-1 ml-1.5 w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clipRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  fillRule="evenodd"
-                />
-              </svg>
-            </button>
-            <div
-              className="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700"
-              id="filterDropdown"
-            >
-              <h6 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">
-                Category
-              </h6>
-              <ul
-                aria-labelledby="dropdownDefault"
-                className="space-y-2 text-sm"
-              >
-                <li className="flex items-center">
-                  <input
-                    className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                    defaultValue=""
-                    id="apple"
-                    type="checkbox"
-                  />
-                  <label
-                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                    htmlFor="apple"
-                  >
-                    Apple (56)
-                  </label>
-                </li>
-                <li className="flex items-center">
-                  <input
-                    className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                    defaultValue=""
-                    id="fitbit"
-                    type="checkbox"
-                  />
-                  <label
-                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                    htmlFor="fitbit"
-                  >
-                    Fitbit (56)
-                  </label>
-                </li>
-                <li className="flex items-center">
-                  <input
-                    className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                    defaultValue=""
-                    id="dell"
-                    type="checkbox"
-                  />
-                  <label
-                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                    htmlFor="dell"
-                  >
-                    Dell (56)
-                  </label>
-                </li>
-                <li className="flex items-center">
-                  <input
-                    className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                    defaultChecked
-                    defaultValue=""
-                    id="asus"
-                    type="checkbox"
-                  />
-                  <label
-                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
-                    htmlFor="asus"
-                  >
-                    Asus (97)
-                  </label>
-                </li>
-              </ul>
+            <div>
+              <div className="mb-1 font-semibold">Growth</div>
+              <p className="text-sm text-gray-500">
+                This is a section of some simple filler text, also known as
+                placeholder text.
+              </p>
             </div>
+          </a>
+          {/* link - end */}
+          {/* link - start */}
+          <a href="#" className="group flex gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg transition duration-100 group-hover:bg-indigo-600 group-active:bg-indigo-700 md:h-12 md:w-12">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
+              </svg>
+            </div>
+            <div>
+              <div className="mb-1 font-semibold">Security</div>
+              <p className="text-sm text-gray-500">
+                This is a section of some simple filler text, also known as
+                placeholder text.
+              </p>
+            </div>
+          </a>
+          {/* link - end */}
+          {/* link - start */}
+          <a href="#" className="group flex gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg transition duration-100 group-hover:bg-indigo-600 group-active:bg-indigo-700 md:h-12 md:w-12">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"
+                />
+              </svg>
+            </div>
+            <div>
+              <div className="mb-1 font-semibold">Cloud</div>
+              <p className="text-sm text-gray-500">
+                This is a section of some simple filler text, also known as
+                placeholder text.
+              </p>
+            </div>
+          </a>
+          {/* link - end */}
+          {/* link - start */}
+          <a href="#" className="group flex gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg transition duration-100 group-hover:bg-indigo-600 group-active:bg-indigo-700 md:h-12 md:w-12">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+              </svg>
+            </div>
+            <div>
+              <div className="mb-1 font-semibold">Analytics</div>
+              <p className="text-sm text-gray-500">
+                This is a section of some simple filler text, also known as
+                placeholder text.
+              </p>
+            </div>
+          </a>
+          {/* link - end */}
+        </div>
+        {/* promo - start */}
+        <div className="w-1/3 overflow-hidden rounded-lg border">
+          <div className="h-48 bg-gray-100">
+            <img
+              src="https://images.unsplash.com/photo-1619118884592-11b151f1ae11?auto=format&q=75&fit=crop&w=320"
+              loading="lazy"
+              alt="Photo by Fakurian Design"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+          <div className="flex items-center justify-between gap-2 bg-white p-3">
+            <p className="text-sm text-gray-500">
+              This is some simple filler text.
+            </p>
+            <a
+              href="#"
+              className="inline-block shrink-0 rounded-lg border bg-white px-3 py-1 text-sm font-semibold text-indigo-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-50 focus-visible:ring active:bg-gray-100"
+            >
+              More
+            </a>
           </div>
         </div>
+        {/* promo - end */}
       </div>
     </div>
+    {/* menu - end */}
   </div>
-</section>
+</div>
+
   </>
   );
 }

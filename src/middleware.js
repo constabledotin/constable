@@ -1,24 +1,28 @@
 export { default } from "next-auth/middleware";
-import { getToken } from 'next-auth/jwt';
-import { NextResponse } from 'next/server';
+import { getToken } from "next-auth/jwt";
+import { NextResponse } from "next/server";
 
 export async function middleware(req) {
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-  
-    // Redirect to login if no token is found
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+  if (req.nextUrl.pathname.startsWith("/user")) {
     if (!token) {
-      return NextResponse.redirect(new URL('/auth/login', req.url));
+      return NextResponse.redirect(new URL("/auth/login", req.url));
     }
-  
-    // Check if the user has the "admin" role
-    console.log(token)
-    // if (token.role !== 'admin') {
-    //   return NextResponse.redirect(new URL('/403', req.url)); // Redirect to a "Forbidden" page
-    // }
-  
-    return NextResponse.next();
   }
 
+  if (req.nextUrl.pathname.startsWith("/admin")) {
+    if (!token) {
+      return NextResponse.redirect(new URL("/auth/login", req.url));
+    }
+    if (token.role != "admin") {
+      return NextResponse.redirect(new URL("/auth/login", req.url));
+    }
+  }
+
+  return NextResponse.next();
+}
+
 export const config = {
-    matcher: ["/admin/:path*"],
- };
+  matcher: ["/:path*"],
+};

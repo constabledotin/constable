@@ -34,7 +34,7 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        return { ...token, id: user.id }; // Save id to token as docs says: https://next-auth.js.org/configuration/callbacks
+        return { ...token, id: user.id,role:user.role }; // Save id to token as docs says: https://next-auth.js.org/configuration/callbacks
       }
       return token;
     },
