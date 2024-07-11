@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn ,useSession} from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -11,7 +11,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
+    const { data: session, status } = useSession()
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -29,11 +29,13 @@ const Login = () => {
                 return;
             }
 
-            router.replace("/admin/dashboard/question/create");
+            router.replace("/user/question-paper/get");
         } catch (error) {
             console.log(error);
         }
     };
+
+    
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -48,7 +50,7 @@ const Login = () => {
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
                         alt="logo"
                     />
-                    Flowbite
+                    Constable
                 </a>
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -125,12 +127,12 @@ const Login = () => {
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Don’t have an account yet?{" "}
-                                <a
-                                    href="#"
+                                <Link
+                                    href="/auth/register"
                                     className="font-medium text-primary-600 hover:underline dark:text-green-500"
                                 >
                                     Sign up
-                                </a>
+                                </Link>
                             </p>
                         </form>
                     </div>
