@@ -2,10 +2,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react"
 
-function page() {
-
+function OverView() {
     const [users, setUsers] = useState([]);
-
     const fetchUsers = async () => {
         try {
             const response = await fetch('/api/admin/overview/get-admin', {
@@ -22,7 +20,6 @@ function page() {
             console.error('Error fetching users:', error);
         }
     };
-
     useEffect(() => {
         fetchUsers();
     }, [])
@@ -404,4 +401,4 @@ function page() {
     )
 }
 
-export default page
+export default OverView
