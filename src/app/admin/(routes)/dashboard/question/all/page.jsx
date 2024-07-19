@@ -99,6 +99,7 @@ function CreateQuestion() {
     }, [])
 
     const sanitizeHTML = (htmlString) => {
+        htmlString = htmlString.slice(0,30)
         return htmlString.replace(/<[^>]*>/g, '');
     };
 
@@ -106,9 +107,10 @@ function CreateQuestion() {
         <div>
            {showModel?<UpdateModel setShowModel={setShowModel} setUpdateData={updateData} />:<></>}
            
-            <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+            <section className="bg-gray-50 dark:bg-gray-900 p-0 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
+                    
                     <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                             <div className="w-full md:w-1/2">
@@ -352,6 +354,9 @@ function CreateQuestion() {
                                             Level
                                         </th>
                                         <th scope="col" className="px-4 py-3">
+                                            Created By
+                                        </th>
+                                        <th scope="col" className="px-4 py-3">
                                             <span className="sr-only">Actions</span>
                                         </th>
                                     </tr>
@@ -372,6 +377,7 @@ function CreateQuestion() {
                                                     <td className="px-4 py-3">{question.topic}</td>
                                                     <td className="px-4 py-3">{question.subtopic}</td>
                                                     <td className="px-4 py-3">{question.difficulty}</td>
+                                                    <td className="px-4 py-3">{question.createdBy.name}</td>
                                                     <td className="px-4 py-3 flex items-center justify-end">
                                                         <button
                                                             id="apple-imac-27-dropdown-button"

@@ -1,22 +1,19 @@
 import { NextResponse } from "next/server";
 import connectToDB from "@/database";
-import Question from "@/database/models/questionSchema";
 import User from "@/database/models/userSchema";
 export async function POST(req) {
   try {
     // Connect to the database
     await connectToDB();
-    // Parse the request body
-    const body = await req.json();
-    const {page,limit}= body;
-    let skips = limit * (page - 1);
-    const questions = await Question.find({}).populate({path : "createdBy",select:'name'}).skip(skips).limit(limit);
+    const users = await User.find({
+        role: { $in: ["admin", "moderator"] }
+      });
 
     // Send a success response
     return NextResponse.json({
       success: true,
-      message: "Question fetched successfully",
-      data: questions,
+      message: "users fetched successfully",
+      data: users,
     });
   } catch (error) {
     console.error(error);
