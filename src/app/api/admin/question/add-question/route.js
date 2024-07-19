@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
 import connectToDB from "@/database";
 import Question from "@/database/models/questionSchema";
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/app/api/auth/[...nextauth]/auth";
 export async function POST(req) {
   try {
     // Connect to the database
     await connectToDB();
+    const session = await getServerSession(authOptions)
+    const userId = session.user.id
+
     // Parse the request body
     const body = await req.json();
     const {
@@ -19,17 +24,20 @@ export async function POST(req) {
       options,
     } = body;
 
+    const trimmedOptions = options.map(option => option.trim());
+
     // Create a new question document
     const newQuestion = new Question({
       question: question,
       solution: solution,
-      options: options,
+      options: trimmedOptions,
       subject: subjectName,
       topic: topicName,
       subtopic: subtopicName,
       difficulty: difficulty,
       videoLink: videoLink,
-      answer: answer,
+      answer: answer.trim(),
+      createdBy : userId
     });
 
     // Save the question to the database
@@ -46,6 +54,8 @@ export async function POST(req) {
     return NextResponse.json({
       success: false,
       message: "Something went wrong! Please try again later",
+    },{
+      status : 500
     });
   }
 }
