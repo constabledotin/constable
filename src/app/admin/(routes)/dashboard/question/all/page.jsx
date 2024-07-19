@@ -8,8 +8,8 @@ import Swal from 'sweetalert2'
 
 function CreateQuestion() {
     const [questions, setQuestions] = useState([]);
-    const [showModel,setShowModel] = useState(false)
-    const [updateData,setUpdateData] = useState()
+    const [showModel, setShowModel] = useState(false)
+    const [updateData, setUpdateData] = useState()
 
     const [currentPage, setCurrentPage] = useState(1); // Initialize current page
     const [totalPages, setTotalPages] = useState(10); // Placeholder for total pages (adjust as per API response)
@@ -88,7 +88,7 @@ function CreateQuestion() {
         }
     };
 
-    const handleEdit = async(question)=>{
+    const handleEdit = async (question) => {
         setUpdateData(question)
         setShowModel(true)
     }
@@ -99,18 +99,18 @@ function CreateQuestion() {
     }, [])
 
     const sanitizeHTML = (htmlString) => {
-        htmlString = htmlString.slice(0,30)
+        htmlString = htmlString.slice(0, 30)
         return htmlString.replace(/<[^>]*>/g, '');
     };
 
     return (
         <div>
-           {showModel?<UpdateModel setShowModel={setShowModel} setUpdateData={updateData} />:<></>}
-           
+            {showModel ? <UpdateModel setShowModel={setShowModel} setUpdateData={updateData} /> : <></>}
+
             <section className="bg-gray-50 dark:bg-gray-900 p-0 sm:p-5">
                 <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
                     {/* Start coding here */}
-                    
+
                     <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                             <div className="w-full md:w-1/2">
@@ -409,24 +409,33 @@ function CreateQuestion() {
                                                                 <li>
 
                                                                     <button
-                                                                        onClick={()=>{handleEdit(question)}}
+                                                                        onClick={() => { handleEdit(question) }}
                                                                         className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                                                                     >
                                                                         Edit
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                <div className="py-1">
-                                                                <button
-                                                                    onClick={() => { handleDelete(question._id) }}
-                                                                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                                >
-                                                                    Delete
-                                                                </button>
-                                                            </div>
+                                                                    <div className="py-1">
+                                                                        <button
+                                                                            onClick={() => {
+                                                                                Swal.fire({
+                                                                                    title: "Are you sure?",
+                                                                                    text: "You want to delete this user?",
+                                                                                    icon: "warning",
+                                                                                    dangerMode: true,
+                                                                                }).then((willDelete) => {
+                                                                                    handleDelete(question._id)
+                                                                                });
+                                                                            }}
+                                                                            className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                                        >
+                                                                            Delete
+                                                                        </button>
+                                                                    </div>
                                                                 </li>
                                                             </ul>
-                                                         
+
                                                         </div>
                                                     </td>
                                                 </tr>
