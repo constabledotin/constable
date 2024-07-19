@@ -40,12 +40,12 @@ const questionSchema = new Schema(
       type: String,
       required: true,
     },
-    createdBy: [
+    createdBy: 
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
-    ],
+    
   },
   {
     timestamps: true,
