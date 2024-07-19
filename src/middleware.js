@@ -22,7 +22,7 @@ export async function middleware(req) {
     if (!token) {
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
-    if (token.role != "admin") {
+    if (token.role != "admin" || token.role != "moderator") {
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
   }
