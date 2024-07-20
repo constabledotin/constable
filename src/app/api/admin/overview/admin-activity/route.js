@@ -3,13 +3,16 @@ import connectToDB from "@/database";
 import Question from "@/database/models/questionSchema";
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/[...nextauth]/auth";
+import mongoose from "mongoose";
 
 export async function POST(req) {
   try {
     // Connect to the database
     await connectToDB();
-    const session = await getServerSession(authOptions)
-    const userId = session.user.id
+    const {id} = await req.json()
+    const userId = id;
+    console.log("id is ",id)
+
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
     const todayEnd = new Date();
@@ -17,7 +20,7 @@ export async function POST(req) {
     const countToday = await Question.aggregate([
       {
         $match: {
-          createdBy: userId,
+          createdBy:  new mongoose.Types.ObjectId(userId),
           createdAt: { $gte: todayStart, $lt: todayEnd },
         },
       },
@@ -40,7 +43,7 @@ export async function POST(req) {
     const countThisWeek = await Question.aggregate([
       {
         $match: {
-          createdBy: userId,
+          createdBy:  new mongoose.Types.ObjectId(userId),
           createdAt: { $gte: weekStart, $lt: weekEnd },
         },
       },
@@ -62,7 +65,7 @@ export async function POST(req) {
     const countThisMonth = await Question.aggregate([
       {
         $match: {
-          createdBy: userId,
+          createdBy: new mongoose.Types.ObjectId(userId),
           createdAt: { $gte: monthStart, $lt: monthEnd },
         },
       },
@@ -85,7 +88,7 @@ export async function POST(req) {
     return NextResponse.json({
       success: true,
       message: "users fetched successfully",
-      data: countToday,
+      data: data,
     });
   } catch (error) {
     console.error(error);

@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import { useEffect, useState } from "react"
+import { initFlowbite } from 'flowbite';
 
 function OverView() {
     const [users, setUsers] = useState([]);
@@ -22,11 +23,12 @@ function OverView() {
     };
     useEffect(() => {
         fetchUsers();
+        initFlowbite();
     }, [])
 
     return (
-        <section className="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
-            <div className="mx-auto max-w-screen-xl px-4 lg:px-12">
+        <section className="bg-gray-50 dark:bg-gray-900">
+            <div className="mx-auto max-w-screen-xl px-4">
                 {/* Start coding here */}
                 <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                     <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
@@ -79,7 +81,7 @@ function OverView() {
                                         d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
                                     />
                                 </svg>
-                                Add product
+                                Add User
                             </button>
                             <div className="flex items-center space-x-3 w-full md:w-auto">
                                 <button
@@ -283,7 +285,7 @@ function OverView() {
                                                 </th>
                                                 <td className="px-4 py-3">{user.email}</td>
                                                 <td className="px-4 py-3">{user.role}</td>
-                                                <td className="px-4 py-3"><Link href={"/user"} >View</Link></td>
+                                                <td className="px-4 py-3"><Link href={`/admin/dashboard/overview/user-activity/${user._id}`} >View</Link></td>
                                             </tr>
 
                                         )

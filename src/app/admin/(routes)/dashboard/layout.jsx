@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function DashboardLayout({ children }) {
   return (
-    <div div  suppressHydrationWarning={true}>
+    <div  suppressHydrationWarning={true}>
       <div className="antialiased bg-gray-50 dark:bg-gray-900">
         <nav className="bg-white border-b border-gray-200 px-4 py-2.5 dark:bg-gray-800 dark:border-gray-700 fixed left-0 right-0 top-0 z-50">
           <div className="flex flex-wrap justify-between items-center">
@@ -1012,7 +1012,7 @@ export default function DashboardLayout({ children }) {
               className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
             >
               Settings page
-              <div className="tooltip-arrow" data-popper-arrow="" />
+              <div className="tooltip-arrow" />
             </div>
             <button
               type="button"

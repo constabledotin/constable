@@ -168,7 +168,7 @@ button#start:hover {
 }
 
 #overlay #user-container .pseudo-avatar.anonymous {
-	background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%0A%20%20%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%20d%3D%22M9.8%2020H2c0-5.7%205-5.7%206-7l.2-.8c-1.6-.8-2.7-2.7-2.7-5%200-2.8%202-5.2%204.3-5.2S14%204.4%2014%207.3c0%202.2-1%204-2.6%205l.2.6c1.2%201.3%206%201.4%206%207H9.8z%22%2F%3E%0A%3C%2Fsvg%3E)
+	background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%0A%20%20%3Cpath%20fill%3D%22%23FFF%22%20fillRule%3D%22nonzero%22%20d%3D%22M9.8%2020H2c0-5.7%205-5.7%206-7l.2-.8c-1.6-.8-2.7-2.7-2.7-5%200-2.8%202-5.2%204.3-5.2S14%204.4%2014%207.3c0%202.2-1%204-2.6%205l.2.6c1.2%201.3%206%201.4%206%207H9.8z%22%2F%3E%0A%3C%2Fsvg%3E)
 }
 
 .role {
