@@ -1,10 +1,11 @@
 "use client"
 import AdminHeader from '@/components/admin/AdminHeader'
-import { signOut } from 'next-auth/react';
+import { signOut,useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function DashboardLayout({ children }) {
+  const { data: session, status } = useSession();
   return (
     <div suppressHydrationWarning={true}>
       <div className="antialiased bg-gray-50 dark:bg-gray-900">
@@ -599,10 +600,10 @@ export default function DashboardLayout({ children }) {
               >
                 <div className="py-3 px-4">
                   <span className="block text-sm font-semibold text-gray-900 dark:text-white">
-                    Neil Sims
+                    {session?.user.name || ""}
                   </span>
                   <span className="block text-sm text-gray-900 truncate dark:text-white">
-                    name@flowbite.com
+                    {session?.user.email || ""}
                   </span>
                 </div>
                 <ul

@@ -1,5 +1,6 @@
 "use client"
-import { useState } from "react";
+import { initFlowbite } from "flowbite";
+import { useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 
 
@@ -52,6 +53,10 @@ function CreateSubject() {
             setError("Failed to create subject. Please try again."); // Set error state
         }
     };
+
+    useEffect(()=>{
+        initFlowbite();
+    },[])
 
     return (
         <section className="bg-white dark:bg-gray-900">

@@ -1,5 +1,8 @@
+"use client"
 import Image from "next/image"
+import {useSession } from "next-auth/react";
 const AdminHeader = () => {
+  const { data: session, status } = useSession();
   return (
       <header className="antialiased">
         <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
@@ -596,10 +599,10 @@ const AdminHeader = () => {
               >
                 <div className="py-3 px-4">
                   <span className="block text-sm font-semibold text-gray-900 dark:text-white">
-                    Neil sims
+                   {session.user.name || " "}
                   </span>
                   <span className="block text-sm text-gray-500 truncate dark:text-gray-400">
-                    name@flowbite.com
+                    {session.user.email || " "}
                   </span>
                 </div>
                 <ul
