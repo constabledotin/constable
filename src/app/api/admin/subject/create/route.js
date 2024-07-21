@@ -8,7 +8,8 @@ export async function POST(req) {
     const body = await req.json();
     const { subjectName } = body;
     const isSubject = await Subject.find({subjectName:subjectName});
-    if(isSubject){
+    console.log(isSubject)
+    if(isSubject.length > 0){
       return NextResponse.json(
         {
           success: false,

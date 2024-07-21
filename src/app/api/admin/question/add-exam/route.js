@@ -9,7 +9,7 @@ export async function POST(req) {
     const { examName } = await req.json();
     const name = examName.trim();
     const isExam = await ExamName.find({name:name});
-    if(isExam){
+    if(isExam.length > 0){
       return NextResponse.json(
         {
           success: false,
