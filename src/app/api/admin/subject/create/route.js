@@ -7,6 +7,19 @@ export async function POST(req) {
     await connectToDB();
     const body = await req.json();
     const { subjectName } = body;
+    const isSubject = await Subject.find({subjectName:subjectName});
+    if(isSubject){
+      return NextResponse.json(
+        {
+          success: false,
+          message: "subject name is already added",
+        },
+        {
+          status: 404,
+        }
+      );
+    }
+
     const subject = new Subject({
       subjectName: subjectName,
     });

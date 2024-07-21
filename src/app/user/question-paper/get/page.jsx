@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { initFlowbite } from 'flowbite';
 
 function ShowQuestion() {
-    const [question, setQuestion] = useState({ id: "", question: "", options: ["ej", "jd"] });
+    const [question, setQuestion] = useState({ id: "", question: "", options: [""],history:[{examName:"NO",examYear:"NO"}]});
     const [selectedAnswer, setSelectedAnswer] = useState("")
     const [rightAnswer, setRightAnswer] = useState("");
     const [isCorrect, setIsCorrect] = useState(true)
@@ -30,7 +30,6 @@ function ShowQuestion() {
                 throw new Error("Network response was not ok");
             }
             const result = await response.json();
-            console.log('result is ', result)
             setQuestion({
                 id: result.data._id,
                 question: result.data.question,
@@ -40,10 +39,10 @@ function ShowQuestion() {
                 subject: result.data.subject,
                 topic: result.data.topic,
                 subtopic: result.data.subtopic,
-                videoLink: result.data.videoLink
+                videoLink: result.data.videoLink,
+                history : result.data.history || [{examName:"",examYear:""}]
             });
             setRightAnswer("");
-            console.log("result is ", result);
         } catch (error) {
             console.log(error);
         }
@@ -149,9 +148,18 @@ function ShowQuestion() {
                                 <div className="my-4">
                                     <span class=" bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-100">Level : {question.difficulty}</span>
                                 </div>
+                                <div className="my-4">
+                                    <span class="bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">History : {question.history[0].examName +" " + question.history[0].examYear}</span>
+                                </div>
                                 <div className="my-10">
                                     <span class="bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400">Subtopic : {question.subtopic}</span>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="py-8 px-4 mx-auto max-w-screen-xl">
+                            <div className="font-light text-gray-800 sm:text-lg dark:text-gray-100">
+                                Solution <p className="mb-4" dangerouslySetInnerHTML={{ __html: question.solution }}></p>
                             </div>
                         </div>
                         <div className="p-12 flex items-center justify-center">

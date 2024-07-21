@@ -40,6 +40,10 @@ const questionSchema = new Schema(
       type: String,
       required: true,
     },
+    history : [{
+      examYear: String,
+      examName : String
+    }],
     createdBy: 
       {
         type: mongoose.Schema.Types.ObjectId,

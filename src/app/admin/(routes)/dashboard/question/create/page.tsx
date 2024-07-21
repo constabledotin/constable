@@ -15,6 +15,7 @@ function CreateQuestion() {
   const [options, setOptions] = useState(["", "", "", ""]);
   const [question, setQuestion] = useState("");
   const [solution, setSolution] = useState("");
+  const [exams, setExams] = useState([]);
   const [formData, setFormData] = useState({
     subjectName: "",
     topicName: "",
@@ -22,11 +23,22 @@ function CreateQuestion() {
     difficulty: 0,
     videoLink: "",
     answer: "",
+    examName: "",
+    examYear : ""
   });
 
   const [subject, setSubject] = useState([]);
   const [topic, setTopic] = useState([]);
   const [subtopic, setSubtopic] = useState([]);
+
+
+  const startYear = 1980;
+  const currentYear = new Date().getFullYear();
+  const examYears = [];
+
+  for (let year = startYear; year <= currentYear; year++) {
+    examYears.push(year);
+  }
 
   const addOption = () => {
     setOptions([...options, ""]);
@@ -155,6 +167,25 @@ function CreateQuestion() {
     }
   };
 
+  const getExamList = async () => {
+    try {
+      const response = await fetch("/api/admin/question/get-exam-list", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      setExams(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     initFlowbite();
     getSubject();
@@ -167,6 +198,10 @@ function CreateQuestion() {
   useEffect(() => {
     getSubtopic(formData.subjectName, formData.topicName);
   }, [formData.topicName]);
+
+  useEffect(() => {
+    getExamList();
+  }, []);
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -236,9 +271,81 @@ function CreateQuestion() {
                 required
               />
             </div>
+            <div className="mb-4">
+              <label
+                htmlFor="videoLink"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Video Link
+              </label>
+              <input
+                type="url"
+                name="videoLink"
+                id="videoLink"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Enter video link"
+                value={formData.videoLink}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
 
           <div className="">
+            <div className="mb-4">
+              <label
+                htmlFor="subjectName"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Exam
+              </label>
+              <select
+                name="examName"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                value={formData.examName}
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                required
+              >
+                <option value="">Select exam name</option>
+
+                {exams.map((exam) => {
+                  return (
+                    <option key={exam._id} value={exam.name}>
+                      {exam.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="examYear"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Exam Year
+              </label>
+              <select
+                name="examYear"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                value={formData.examYear}
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                required
+              >
+                <option value="">Select exam year</option>
+
+                {examYears.map((year) => {
+                  return (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
             <div className="mb-4">
               <label
                 htmlFor="subjectName"
@@ -341,23 +448,7 @@ function CreateQuestion() {
               />
             </div>
 
-            <div className="mb-4">
-              <label
-                htmlFor="videoLink"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Video Link
-              </label>
-              <input
-                type="url"
-                name="videoLink"
-                id="videoLink"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Enter video link"
-                value={formData.videoLink}
-                onChange={handleInputChange}
-              />
-            </div>
+
           </div>
         </form>
 

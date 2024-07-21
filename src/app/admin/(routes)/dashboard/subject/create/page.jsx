@@ -23,12 +23,15 @@ function CreateSubject() {
                 body: JSON.stringify(payload),
             });
 
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-
             const result = await response.json();
-            console.log("Success:", result);
+            if (!response.ok) {
+                Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: result.message,
+                });
+                return;
+              }
             Swal.fire({
                 position: "top-end",
                 icon: "success",
