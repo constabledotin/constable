@@ -24,6 +24,7 @@ export async function POST(req) {
       options,
       examName,
       examYear,
+      extraInfo
     } = body;
 
     const trimmedOptions = options.map(option => option.trim());
@@ -40,7 +41,8 @@ export async function POST(req) {
       videoLink: videoLink,
       answer: answer.trim(),
       createdBy : userId,
-      history : [{examName,examYear}]
+      history : [{examName,examYear}],
+      extraInfo : extraInfo
     });
 
     // Save the question to the database

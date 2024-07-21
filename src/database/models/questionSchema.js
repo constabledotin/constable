@@ -44,6 +44,7 @@ const questionSchema = new Schema(
       examYear: String,
       examName : String
     }],
+    extraInfo : String,
     createdBy: 
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -24,13 +24,13 @@ function CreateQuestion() {
     videoLink: "",
     answer: "",
     examName: "",
-    examYear : ""
+    examYear: "",
+    extraInfo: "",
   });
 
   const [subject, setSubject] = useState([]);
   const [topic, setTopic] = useState([]);
   const [subtopic, setSubtopic] = useState([]);
-
 
   const startYear = 1980;
   const currentYear = new Date().getFullYear();
@@ -288,6 +288,23 @@ function CreateQuestion() {
                 onChange={handleInputChange}
               />
             </div>
+            <div className="mb-4">
+              <label
+                htmlFor="extraInfo"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+               Extra Info
+              </label>
+              <input
+                type="text"
+                name="extraInfo"
+                id="extraInfo"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="Enter video link"
+                value={formData.extraInfo}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
 
           <div className="">
@@ -447,8 +464,6 @@ function CreateQuestion() {
                 required
               />
             </div>
-
-
           </div>
         </form>
 
