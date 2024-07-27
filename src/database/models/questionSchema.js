@@ -3,6 +3,10 @@ import User from "@/database/models/userSchema";
 
 const questionSchema = new Schema(
   {
+    qid: {
+      type: String,
+      unique: true,
+    },
     options: {
       type: [String],
     },
@@ -56,6 +60,31 @@ const questionSchema = new Schema(
     timestamps: true,
   }
 );
+
+// Pre-save hook to generate QID
+questionSchema.pre("save", function (next) {
+  if (!this.qid) { // Check if QID is not already set
+    const subjectCode = this.subject.slice(0, 2).toUpperCase(); // Take first 2 chars of subject
+    const topicCode = this.topic.slice(0, 2).toUpperCase(); // Take first 2 chars of topic
+    const timestamp = new Date().getTime(); // Get the current timestamp
+    this.qid = `${subjectCode}${topicCode}${timestamp}`;
+  }
+  next();
+});
+
+questionSchema.post("find", async function (docs, next) {
+  for (const doc of docs) {
+    if (!doc.qid) {
+      const subjectCode = doc.subject.slice(0, 2).toUpperCase(); // Take first 2 chars of subject
+      const topicCode = doc.topic.slice(0, 2).toUpperCase(); // Take first 2 chars of topic
+      const timestamp = new Date().getTime(); // Get the current timestamp
+      doc.qid = `${subjectCode}${topicCode}${timestamp}`;
+      await doc.save(); // Save the document with the new QID
+    }
+  }
+  next();
+});
+
 
 const Question =
   mongoose.models.Question || mongoose.model("Question", questionSchema);
