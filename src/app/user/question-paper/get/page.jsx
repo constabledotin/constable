@@ -16,8 +16,8 @@ function ShowQuestion() {
     const [isStartTest, setIsStartTest] = useState(false);
 
     const answerClass = `my-4 text-xs font-medium me-2 px-2.5 py-1.5 rounded border ${isCorrect
-            ? "bg-green-100 text-green-800 border-green-400"
-            : "bg-red-100 text-red-800 border-red-400"
+        ? "bg-green-100 text-green-800 border-green-400"
+        : "bg-red-100 text-red-800 border-red-400"
         }`;
 
     const getQuestion = async () => {
@@ -38,6 +38,7 @@ function ShowQuestion() {
             const result = await response.json();
             setQuestion({
                 id: result.data._id,
+                qid: result.data.qid,
                 question: result.data.question,
                 difficulty: result.data.difficulty,
                 answer: result.data.answer,
@@ -46,7 +47,7 @@ function ShowQuestion() {
                 topic: result.data.topic,
                 subtopic: result.data.subtopic,
                 videoLink: result.data.videoLink,
-                solution : result.data.solution,
+                solution: result.data.solution,
                 history: result.data.history || [{ examName: "", examYear: "" }],
             });
             setRightAnswer("");
@@ -167,8 +168,9 @@ function ShowQuestion() {
                                 Next
                             </button>
                         </div>
-
+                        
                         <div className="bg-dark basis-1/4 ml-2">
+                        <span className="m-2 text-blue-100">QID : {question.qid}</span>
                             <div className="my-4">
                                 <span class=" bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                                     Subject :{question.subject}
@@ -200,6 +202,7 @@ function ShowQuestion() {
                         </div>
                     </div>
 
+                 
                     <div className="py-8 px-4 mx-auto max-w-screen-xl">
                         <div className="font-light text-gray-800 sm:text-lg dark:text-gray-100">
                             Solution{" "}

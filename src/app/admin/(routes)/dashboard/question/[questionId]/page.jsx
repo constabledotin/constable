@@ -71,6 +71,7 @@ function Question({ params }) {
                 </div>
 
                 <div className="bg-dark basis-1/4 ml-2">
+                <span className="m-2 text-blue-100">QID : {question.qid}</span>
                     <div className="my-4">
                         <span class=" bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{question.subject}</span>
                     </div>

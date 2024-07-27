@@ -72,19 +72,6 @@ questionSchema.pre("save", function (next) {
   next();
 });
 
-questionSchema.post("find", async function (docs, next) {
-  for (const doc of docs) {
-    if (!doc.qid) {
-      const subjectCode = doc.subject.slice(0, 2).toUpperCase(); // Take first 2 chars of subject
-      const topicCode = doc.topic.slice(0, 2).toUpperCase(); // Take first 2 chars of topic
-      const timestamp = new Date().getTime(); // Get the current timestamp
-      doc.qid = `${subjectCode}${topicCode}${timestamp}`;
-      await doc.save(); // Save the document with the new QID
-    }
-  }
-  next();
-});
-
 
 const Question =
   mongoose.models.Question || mongoose.model("Question", questionSchema);
